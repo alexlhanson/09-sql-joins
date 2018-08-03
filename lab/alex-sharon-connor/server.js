@@ -2,12 +2,12 @@
 
 const pg = require('pg');
 const fs = require('fs');
+const config = require('./config');
 const express = require('express');
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-const conString = '';
-const client = new pg.Client(conString);
+const client = new pg.Client(config.getConnectionString());
 client.connect();
 client.on('error', error => {
   console.error(error);
