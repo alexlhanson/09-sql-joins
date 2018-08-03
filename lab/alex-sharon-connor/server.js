@@ -13,8 +13,8 @@ const client = new pg.Client({
   host : 'localhost',
   port : 5432,
   database : 'kilovolt',
-  user: 'ahanson',
-  password: '12345'
+  user: 'sharon',
+  password: ''
 });
 
 client.connect();
@@ -36,7 +36,7 @@ app.get('/articles', (request, response) => {
 
   // REVIEW: This query will join the data together from our tables and send it back to the client.
   // TODO: Write a SQL query which joins all data from articles and authors tables on the author_id value of each.
-  client.query(``)
+  client.query(`SELECT * FROM articles INNER JOIN authors ON author_id = authors.author_id;`)
     .then(result => {
       response.send(result.rows);
     })
