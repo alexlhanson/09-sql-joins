@@ -1,13 +1,22 @@
 'use strict';
 
+// const config = require('./config');
 const pg = require('pg');
 const fs = require('fs');
-const config = require('./config');
 const express = require('express');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const app = express();
 
-const client = new pg.Client(config.getConnectionString());
+// console.log(config);
+// const conString = config.getConnectionString();
+const client = new pg.Client({
+  host : 'localhost',
+  port : 5432,
+  database : 'kilovolt',
+  user: 'ahanson',
+  password: '12345'
+});
+
 client.connect();
 client.on('error', error => {
   console.error(error);
